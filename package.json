@@ -1,0 +1,19 @@
+{
+  "name": "ctm-test",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xavifuefer/ctm.git"
+  },
+  "author": "Xavi Fuentes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xavifuefer/ctm/issues"
+  },
+  "homepage": "https://github.com/xavifuefer/ctm#readme"
+}
