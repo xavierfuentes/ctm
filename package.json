@@ -1,8 +1,11 @@
 {
   "name": "ctm-test",
   "version": "0.0.1",
-  "description": "",
+  "description": "ten pin bowling score calculator",
   "main": "index.js",
+  "engines": {
+    "node" : ">=6.0.0"
+  },
   "scripts": {
     "test": "mocha --reporter spec"
   },
@@ -18,6 +21,7 @@
   "homepage": "https://github.com/xavifuefer/ctm#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^2.12.0",
     "mocha": "^2.5.3"
   }
 }
