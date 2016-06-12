@@ -13,11 +13,26 @@ class Line {
     let lineScore = 0
 
     this.frames.forEach((frame, index, allFrames) => {
-      lineScore += this.getFrameScore(frame, allFrames[index + 1])
+      const isLast = index === allFrames.length - 1
+      let nextFrame = allFrames[index + 1] || this.bonusFrames
+      let futureFrame = allFrames[index + 2] || this.bonusFrames
+
+      lineScore += frame
+        .reduce((prev, curr) => {
+          // three strikes in a row
+          if (curr === 'X' && nextFrame[0] === 'X' && futureFrame[0] === 'X') return 30
+          // two strikes in a row
+          if (curr === 'X' && nextFrame[0] === 'X') return 20 + Number(futureFrame[0])
+          // one strike
+          if (curr === 'X') return 10 + Number(nextFrame[0]) + Number(nextFrame[1])
+          // one spare
+          if (curr === '/') return 10 + Number(nextFrame[0])
+
+          return Number(prev) + Number(curr)
+        }, 0)
     })
 
-    // gets the final score including the bonus frame
-    return lineScore + this.getFrameScore(this.bonusFrames)
+    return lineScore
   }
 
   /**
@@ -42,21 +57,6 @@ class Line {
    */
   getBonusFrames(lineString) {
     return lineString.split('||')[1].split('')
-  }
-
-  /**
-   * Calculates the scoring for a single frame
-   * @param  {Array}     frame       Array of strings representing the number of pins for each throw
-   * @return {Integer}               Frame score
-   */
-  getFrameScore(frame = [0,0], nextFrame = [0,0]) {
-    return frame
-      .reduce((prev, curr) => {
-        if (curr === 'X') return 10 + Number(nextFrame[0]) + Number(nextFrame[1])
-        if (curr === '/') return 10 + Number(nextFrame[0])
-
-        return Number(prev) + Number(curr)
-      }, 0)
   }
 }
 

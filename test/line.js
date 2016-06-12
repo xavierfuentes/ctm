@@ -37,4 +37,9 @@ describe('Ten Pin Bowling Score Calculator', () => {
     line = new BowlingLine('5/|5/|5/|5/|5/|5/|5/|5/|5/|5/||5')
     expect(line.getScore()).to.equal(150)
   })
+
+  it('handles all strikes + 2 bonus balls ', () => {
+    line = new BowlingLine('X|X|X|X|X|X|X|X|X|X||50')
+    expect(line.getScore()).to.equal(280)
+  })
 })
