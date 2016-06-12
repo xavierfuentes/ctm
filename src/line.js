@@ -2,6 +2,7 @@ class Line {
   constructor(lineString = '00|00|00|00|00|00|00|00|00|00||') {
     this.lineString = lineString
     this.frames = this.getFrames(lineString)
+    this.bonusFrames = this.getBonusFrames(lineString)
   }
 
   /**
@@ -10,14 +11,13 @@ class Line {
    */
   getScore() {
     let lineScore = 0
-    this.frames // gets all the frames
-      .forEach((frame, index, allFrames) => {
-        let currFrameScore = this.getFrameScore(frame, allFrames[index + 1])
 
-        lineScore += currFrameScore
-      })
+    this.frames.forEach((frame, index, allFrames) => {
+      lineScore += this.getFrameScore(frame, allFrames[index + 1])
+    })
 
-    return lineScore
+    // gets the final score including the bonus frame
+    return lineScore + this.getFrameScore(this.bonusFrames)
   }
 
   /**
@@ -32,6 +32,10 @@ class Line {
 
     // split throws (turns 2 characters into an array)
     return frames.map((frame) => frame.split(''))
+  }
+
+  getBonusFrames(lineString) {
+    return lineString.split('||')[1].split('')
   }
 
   /**

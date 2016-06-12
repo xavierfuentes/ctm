@@ -32,4 +32,9 @@ describe('Ten Pin Bowling Score Calculator', () => {
     line = new BowlingLine('X|11|11|11|11|11|11|11|11|11||')
     expect(line.getScore()).to.equal(30)
   })
+
+  it('handles all spares + 1 bonus ball', () => {
+    line = new BowlingLine('5/|5/|5/|5/|5/|5/|5/|5/|5/|5/||5')
+    expect(line.getScore()).to.equal(150)
+  })
 })
