@@ -9,9 +9,15 @@ class Line {
    * @return {Integer}   Line score
    */
   getScore() {
-    return this.frames // gets all the frames
-      .map(this.getFrameScore) // gets frame scoring
-      .reduce((prev, curr) => prev + curr) // sums all frames
+    let lineScore = 0
+    this.frames // gets all the frames
+      .forEach((frame, index, allFrames) => {
+        let currFrameScore = this.getFrameScore(frame, allFrames[index + 1])
+
+        lineScore += currFrameScore
+      })
+
+    return lineScore
   }
 
   /**
@@ -30,15 +36,16 @@ class Line {
 
   /**
    * Calculates the scoring for a single frame
-   * @param  {Array}     frame   Array of strings representing the number of pins for each throw
-   * @return {Integer}           Frame score
+   * @param  {Array}     frame       Array of strings representing the number of pins for each throw
+   * @return {Integer}               Frame score
    */
-  getFrameScore(frame) {
+  getFrameScore(frame = [0,0], nextFrame = [0,0]) {
     return frame
       .reduce((prev, curr) => {
-        // turns each character into a number and sums them
-        return Number(prev) + Number(curr)
-      }, 0) // intial score of 0
+        return isNaN(curr)
+          ? 10 + Number(nextFrame[0])
+          : Number(prev) + Number(curr)
+      })
   }
 }
 
