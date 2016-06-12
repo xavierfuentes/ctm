@@ -27,4 +27,9 @@ describe('Ten Pin Bowling Score Calculator', () => {
     line = new BowlingLine('1/|11|11|11|11|11|11|11|11|11||')
     expect(line.getScore()).to.equal(29)
   })
+
+  it('handles one strike', () => {
+    line = new BowlingLine('X|11|11|11|11|11|11|11|11|11||')
+    expect(line.getScore()).to.equal(30)
+  })
 })

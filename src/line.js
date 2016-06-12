@@ -42,10 +42,11 @@ class Line {
   getFrameScore(frame = [0,0], nextFrame = [0,0]) {
     return frame
       .reduce((prev, curr) => {
-        return isNaN(curr)
-          ? 10 + Number(nextFrame[0])
-          : Number(prev) + Number(curr)
-      })
+        if (curr === 'X') return 10 + Number(nextFrame[0]) + Number(nextFrame[1])
+        if (curr === '/') return 10 + Number(nextFrame[0])
+
+        return Number(prev) + Number(curr)
+      }, 0)
   }
 }
 
