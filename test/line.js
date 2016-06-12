@@ -38,4 +38,9 @@ describe('Ten Pin Bowling Score Calculator', () => {
     line = new BowlingLine('X|X|X|X|X|X|X|X|X|X||XX')
     expect(line.getScore()).to.equal(300)
   })
+
+  it('handles a random example', () => {
+    line = new BowlingLine('X|7/|9-|X|-8|8/|-6|X|X|X||81')
+    expect(line.getScore()).to.equal(167)
+  })
 })

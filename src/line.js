@@ -13,16 +13,16 @@ class Line {
     let lineScore = 0
 
     this.frames.forEach((frame, index, allFrames) => {
-      const isLast = index === allFrames.length - 1
       let nextFrame = allFrames[index + 1] || this.bonusFrames
       let futureFrame = allFrames[index + 2] || this.bonusFrames
 
-      lineScore += frame
-        .reduce((prev, curr) => {
+      lineScore += frame.reduce((prev, curr) => {
           // three strikes in a row
           if (curr === 'X' && nextFrame[0] === 'X' && futureFrame[0] === 'X') return 30
           // two strikes in a row
           if (curr === 'X' && nextFrame[0] === 'X') return 20 + Number(futureFrame[0])
+          // one strike and one spar
+          if (curr === 'X' && nextFrame[1] === '/') return 20
           // one strike
           if (curr === 'X') return 10 + Number(nextFrame[0]) + Number(nextFrame[1])
           // one spare
@@ -47,7 +47,10 @@ class Line {
     if (frames.length > 10) throw Error('The max number of frames is 10')
 
     // split throws (turns 2 characters into an array)
-    return frames.map((frame) => frame.split(''))
+    return frames.map((frame) => {
+      // change the character '-' for a 0
+      return frame.split('').map((roll) => roll === '-' ? 0 : roll)
+    })
   }
 
   /**
