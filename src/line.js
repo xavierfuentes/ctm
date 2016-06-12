@@ -22,7 +22,8 @@ class Line {
 
   /**
    * Gets the normal (not bonus) frames from a string
-   * @return {Array}   Frames that form the bowling line
+   * @param  {String}   lineString   Definition of the game
+   * @return {Array}                 Frames that compose the normal (not bonus) rolls
    */
   getFrames(lineString) {
     const frames = lineString.split('||')[0].split('|') // split normal frames from the bonus ones
@@ -34,6 +35,11 @@ class Line {
     return frames.map((frame) => frame.split(''))
   }
 
+  /**
+   * Gets the bonus frames from a string
+   * @param  {String}   lineString   Definition of the game
+   * @return {Array}                 Frames that compose the bonus rolls
+   */
   getBonusFrames(lineString) {
     return lineString.split('||')[1].split('')
   }
