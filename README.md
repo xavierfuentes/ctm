@@ -1,12 +1,26 @@
 ##BOWLING
 Write a program to score a game of Ten-Pin Bowling.
 
->>>
-Input: string (described below) representing a bowling game
-Ouput: integer score
->>>
+> Input: string (described below) representing a bowling game
+> Ouput: integer score
 
-The scoring rules:
+## Requirements
+```
+node ^6.0.0
+```
+
+## Quick start
+```
+npm install
+npm start
+```
+
+## Test
+```
+npm run test
+```
+
+## The scoring rules:
 
 - Each game, or "line" of bowling, includes ten turns, or "frames" for the bowler.
 - In each frame, the bowler gets up to two tries to knock down all ten pins.
