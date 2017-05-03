@@ -23,7 +23,7 @@
   "homepage": "https://github.com/xavifuefer/ctm#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^2.12.0",
-    "mocha": "^2.5.3"
+    "eslint": "^3.19.0",
+    "mocha": "^3.3.0"
   }
 }
